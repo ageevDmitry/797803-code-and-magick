@@ -68,7 +68,7 @@ var onPopupEscPress = function (evt) {
   }
 
   if (document.activeElement.closest('.setup-user-name')) {
-    evt.stopPropagation();
+    document.querySelector('.setup-user-name').blur();
   } else {
     closePopup();
   }
