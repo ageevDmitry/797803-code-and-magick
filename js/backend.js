@@ -2,6 +2,9 @@
 
 (function () {
 
+  var URL_SAVE = 'https://js.dump.academy/code-and-magick';
+  var URL_LOAD = 'https://js.dump.academy/code-and-magick/data';
+
   var serverRequest = function (methodRequest, URL, data, onLoad, onError) {
 
     var xhr = new XMLHttpRequest();
@@ -33,7 +36,7 @@
 
     save: function (data, onLoad, onError) {
 
-      var URL = 'https://js.dump.academy/code-and-magick';
+      var URL = URL_SAVE;
       var methodRequest = 'POST';
 
       serverRequest(methodRequest, URL, data, onLoad, onError);
@@ -41,7 +44,7 @@
 
     load: function (onLoad, onError) {
 
-      var URL = 'https://js.dump.academy/code-and-magick/data';
+      var URL = URL_LOAD;
       var methodRequest = 'GET';
 
       serverRequest(methodRequest, URL, null, onLoad, onError);
