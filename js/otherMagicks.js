@@ -47,10 +47,6 @@
     return color;
   };
 
-  var getRandomIndex = function (min, max) {
-    return Math.floor(min + Math.random() * (max + 1 - min));
-  };
-
   var renderOneWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
@@ -132,3 +128,5 @@
 //   });
 //   rendArrWizards(sameCoatWizards, true);
 // };
+
+// Для проверки
