@@ -47,10 +47,6 @@
     return color;
   };
 
-  var getRandomIndex = function (min, max) {
-    return Math.floor(min + Math.random() * (max + 1 - min));
-  };
-
   var renderOneWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
 
@@ -125,10 +121,3 @@
   window.backend.load(rendArrWizards, window.errorMessage.rendErrorMessage);
 
 })();
-
-// var sortWizards = function (color) {
-//   var sameCoatWizards = serverWizards.filter(function (it) {
-//     return it.colorCoat === color;
-//   });
-//   rendArrWizards(sameCoatWizards, true);
-// };
