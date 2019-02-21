@@ -2,35 +2,11 @@
 
 (function () {
 
-  var COAT_COLORS = [
-    'rgb(146, 100, 161)',
-    'rgb(215, 210, 55)',
-    'rgb(241, 43, 107)',
-    'rgb(101, 137, 164)',
-    'rgb(0, 0, 0)',
-    'rgb(215, 210, 55)',
-    'rgb(56, 159, 117)',
-    'rgb(241, 43, 107)'
-  ];
-
-  var EYES_COLORS = [
-    'red',
-    'orange',
-    'yellow',
-    'green',
-    'lightblue',
-    'blue',
-    'purple'
-  ];
-
   var coatColor;
   var eyesColor;
   var wizards = [];
 
-  var wizardElement = document.querySelector('.setup-wizard');
-  var wizardCoatElement = wizardElement.querySelector('.wizard-coat');
-  var wizardEyesElement = wizardElement.querySelector('.wizard-eyes');
-
+  // Определение ранга мага
   var getRank = function (wizard) {
     var rank = 0;
 
@@ -44,34 +20,37 @@
     return rank;
   };
 
+  // Сравнение по именам в случае совпадения рангов
+  var namesComparator = function (left, right) {
+    if (left > right) {
+      return 1;
+    } else if (left < right) {
+      return -1;
+    } else {
+      return 0;
+    }
+  };
+
   // Сортировка волшебников по признаку
   var updateWizards = function () {
     window.render.rendSortArr(wizards.sort(function (left, right) {
-      return getRank(right) - getRank(left);
+      var rankDiff = getRank(right) - getRank(left);
+      if (rankDiff === 0) {
+        rankDiff = namesComparator(left.name, right.name);
+      }
+      return rankDiff;
     }));
   };
 
-  // Получение случайного признака из констант
-  var getRandomElement = function (array) {
-    var randomElementIndex = Math.floor(Math.random() * array.length);
-    return array[randomElementIndex];
+  var newCoatWizard = function (color) {
+    coatColor = color;
+    updateWizards();
   };
 
-  // Изменение мантии и сортировка похожих волшебников по цвету мантии
-  wizardCoatElement.addEventListener('click', function () {
-    var newColor = getRandomElement(COAT_COLORS);
-    this.style.fill = newColor;
-    coatColor = newColor;
+  var newEyesWizard = function (color) {
+    eyesColor = color;
     updateWizards();
-  });
-
-  // Изменение глаз и сортировка похожих волшебников по цвету глаз
-  wizardEyesElement.addEventListener('click', function () {
-    var newColor = getRandomElement(EYES_COLORS);
-    this.style.fill = newColor;
-    eyesColor = newColor;
-    updateWizards();
-  });
+  };
 
   // Успешная загрузка с сервера
   var successHandler = function (data) {
@@ -95,4 +74,8 @@
   // Запрос на сервер
   window.load(successHandler, errorHandler);
 
+  window.similar = {
+    newCoatWizard: newCoatWizard,
+    newEyesWizard: newEyesWizard
+  };
 })();
