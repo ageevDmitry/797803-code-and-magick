@@ -42,15 +42,17 @@
     }));
   };
 
-  var newCoatWizard = function (color) {
+  // Сортировка магов при изменении цвета плаща
+  var newCoatWizard = window.util.debounce(function (color) {
     coatColor = color;
     updateWizards();
-  };
+  });
 
-  var newEyesWizard = function (color) {
+  // Сортировка магов при изменении цвета глаз
+  var newEyesWizard = window.util.debounce(function (color) {
     eyesColor = color;
     updateWizards();
-  };
+  });
 
   // Успешная загрузка с сервера
   var successHandler = function (data) {
