@@ -19,13 +19,6 @@
       }
     },
 
-    // debounce: function (updateWizards) {
-    //   if (lastTimeout) {
-    //     window.clearTimeout(lastTimeout);
-    //   }
-    //   lastTimeout = window.setTimeout(updateWizards, DEBOUNCE_INTERVAL);
-    // }
-
     debounce: function (cb) {
       lastTimeout = null;
 
