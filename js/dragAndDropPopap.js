@@ -8,10 +8,21 @@
   dialogHandler.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
-    var startCoords = {
-      x: evt.clientX,
-      y: evt.clientY
+    var Coords = function (X, Y) {
+      this.X = X;
+      this.Y = Y;
     };
+
+    Coords.prototype = {
+      setShift: function (X, Y) {
+        this.shiftX = this.X - X;
+        this.shiftY = this.Y - Y;
+        this.X = X;
+        this.Y = Y;
+      }
+    };
+
+    var moveDialogHandler = new Coords(evt.clientX, evt.clientY);
 
     var dragged = false;
 
@@ -19,18 +30,10 @@
       moveEvt.preventDefault();
       dragged = true;
 
-      var shift = {
-        x: startCoords.x - moveEvt.clientX,
-        y: startCoords.y - moveEvt.clientY
-      };
+      moveDialogHandler.setShift(moveEvt.clientX, moveEvt.clientY);
 
-      startCoords = {
-        x: moveEvt.clientX,
-        y: moveEvt.clientY
-      };
-
-      setup.style.top = (setup.offsetTop - shift.y) + 'px';
-      setup.style.left = (setup.offsetLeft - shift.x) + 'px';
+      setup.style.top = (setup.offsetTop - moveDialogHandler.shiftY) + 'px';
+      setup.style.left = (setup.offsetLeft - moveDialogHandler.shiftX) + 'px';
     };
 
     var onMouseUp = function (upEvt) {
