@@ -1,7 +1,9 @@
+// Модуль позволяет загружать фотографию на аватарку в экране настройки мага;
+
 'use strict';
 
 (function () {
-  var FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+  var FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png']; // Доступные форматы для фотографии на аватарку;
 
   var fileChooser = document.querySelector('.upload input[type=file]');
   var preview = document.querySelector('.setup-user-pic');
@@ -11,17 +13,17 @@
     var fileName = file.name.toLowerCase();
 
     var matches = FILE_TYPES.some(function (it) {
-      return fileName.endsWith(it);
+      return fileName.endsWith(it); // Проверка соответсвия формата загруженного файла;
     });
 
     if (matches) {
-      var reader = new FileReader();
+      var reader = new FileReader(); // Создается объект, который позволяет работать с загруженным файлом;
+
+      reader.readAsDataURL(file); // Фотография кодируется текст в формате Base64;
 
       reader.addEventListener('load', function () {
-        preview.src = reader.result;
+        preview.src = reader.result; // Файл отображается в качестве аватарки;
       });
-
-      reader.readAsDataURL(file);
     }
   });
 })();

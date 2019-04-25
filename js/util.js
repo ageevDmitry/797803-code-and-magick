@@ -3,7 +3,7 @@
 (function () {
   var ECS_KEYCODE = 27;
   var ENTER_KEYCODE = 13;
-  var DEBOUNCE_INTERVAL = 900; // ms
+  var DEBOUNCE_INTERVAL = 300; // ms
   var lastTimeout;
 
   window.util = {
