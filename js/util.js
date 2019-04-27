@@ -34,6 +34,5 @@
         }, DEBOUNCE_INTERVAL);
       };
     }
-
   };
 })();

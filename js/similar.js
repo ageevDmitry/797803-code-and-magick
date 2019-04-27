@@ -74,7 +74,7 @@
   };
 
   // Запрос на сервер
-  window.load(successHandler, errorHandler);
+  window.backend.load(successHandler, errorHandler);
 
   window.similar = {
     newCoatWizard: newCoatWizard,
