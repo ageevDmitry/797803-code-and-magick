@@ -1,6 +1,6 @@
-'use strict';
-
+// eslint-disable-next-line strict
 (function () {
+
   var WIZARD_EYES_COLORS = [
     'red',
     'orange',
@@ -71,4 +71,5 @@
   };
 
   window.Wizard = Wizard;
+
 })();

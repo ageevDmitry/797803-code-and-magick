@@ -7,6 +7,7 @@
 
   var wizardTemplate = document.querySelector('#similar-wizard-template');
 
+
   var createElement = function (wizard) {
     var element = wizardTemplate.content.cloneNode(true);
 
@@ -15,6 +16,7 @@
     wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
     wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
     element.querySelector('.setup-similar-label').textContent = wizard.name;
+
     return element;
   };
 
@@ -35,3 +37,4 @@
 
 // var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
 // var wizardElement = similarWizardTemplate.cloneNode(true);
+

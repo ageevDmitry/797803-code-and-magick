@@ -15,6 +15,7 @@
 
   wizardEyesElement.addEventListener('click', function () {
     wizardEyesElement.style.fill = wizard.changeEyesColor();
+
   });
 
   window.myWizard = wizard;

@@ -12,6 +12,7 @@
       rank += 2;
     }
     if (wizard.eyesColor === window.myWizard.eyesColor) {
+
       rank += 1;
     }
 
@@ -32,6 +33,7 @@
   var wizardsComparator = function (left, right) {
     var rankDiff = getRank(right) - getRank(left);
     return rankDiff === 0 ? namesComparator(left.name, right.name) : rankDiff;
+
   };
 
   var updateFilter = function () {
