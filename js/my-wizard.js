@@ -6,7 +6,7 @@
   var wizardName = document.querySelector('.setup-user-name');
   var wizardCoatElement = wizardElement.querySelector('.wizard-coat');
   var wizardEyesElement = wizardElement.querySelector('.wizard-eyes');
-  //  var wizardFireballElement = document.querySelector('.setup-fireball-wrap');
+  var wizardFireballElement = document.querySelector('.setup-fireball-wrap');
   var wizard = new window.Wizard({name: wizardName.value});
 
   wizardCoatElement.addEventListener('click', function () {
@@ -18,8 +18,10 @@
 
   });
 
+  wizardFireballElement.addEventListener('click', function () {
+    wizardFireballElement.style.background = wizard.changeFireballColor();
+    console.log(wizardFireballElement);
+  });
+
   window.myWizard = wizard;
-  // wizardFireballElement.addEventListener('click', function () {
-  //   this.style.background = getRandomElement(WIZARD_FIREBALL_COLORS);
-  // });
 })();

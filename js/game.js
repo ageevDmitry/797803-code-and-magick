@@ -811,15 +811,15 @@ window.Game = (function () {
 
   var game = new Game(document.querySelector('.demo'));
 
-  window.restartGame = function (wizardRightImage, wizardLeftImage) {
+  window.restartGame = function (wizardRightImage, wizardLeftImage, wizardFireballRightImage) {
     SpriteMap[ObjectType.ME].url = wizardRightImage;
     SpriteMap[ObjectType.ME + REVERSED].url = wizardLeftImage;
-
+    SpriteMap[ObjectType.FIREBALL].url = wizardFireballRightImage;
     game.initializeLevelAndStart();
     game.setGameStatus(Verdict.INTRO);
   };
 
-  window.restartGame('img/wizard.gif', 'img/wizard-reversed.gif');
+  window.restartGame('img/wizard.gif', 'img/wizard-reversed.gif', 'img/fireball.gif');
 
   return game;
 })();

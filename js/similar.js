@@ -46,6 +46,7 @@
 
   // Успешная загрузка с сервера
   var successHandler = function (data) {
+    console.log(data);
     wizards = data.map(function (it) {
       return new window.Wizard(it);
     });

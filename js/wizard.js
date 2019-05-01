@@ -23,13 +23,13 @@
     'rgb(241, 43, 107)'
   ];
 
-  // var WIZARD_FIREBALL_COLORS = [
-  //     '#ee4830',
-  //     '#30a8ee',
-  //     '#5ce6c0',
-  //     '#e848d5',
-  //     '#e6e848'
-  //   ];
+  var WIZARD_FIREBALL_COLORS = [
+    '#ee4830',
+    '#30a8ee',
+    '#5ce6c0',
+    '#e848d5',
+    '#e6e848'
+  ];
 
   var getRandomElement = function (array) {
     var randomElementIndex = Math.floor(Math.random() * array.length);
@@ -40,6 +40,7 @@
     this.name = data.name;
     this.coatColor = data.colorCoat;
     this.eyesColor = data.colorEyes;
+    this.fireballColor = data.colorFireball;
   };
 
   Wizard.prototype = {
@@ -66,6 +67,13 @@
       this.onChange(this);
       return newColor;
     },
+
+    changeFireballColor: function () {
+      var newColor = getRandomElement(WIZARD_FIREBALL_COLORS);
+      this.fireballColor = newColor;
+      return newColor;
+    },
+
     onChange: function (wizard) {
       return wizard;
     }
@@ -85,7 +93,12 @@
 
     var wizardBase64Left = window.svg2base64(wizardCopy);
 
-    window.restartGame(wizardBase64Right, wizardBase64Left);
+    var fireballCopy = document.querySelector('.setup-fireball-wrap').cloneNode(true);
+    fireballCopy.style.background = window.myWizard.fireballColor;
+
+    var wizardFireballBase64Right = window.svg2base64(fireballCopy);
+
+    window.restartGame(wizardBase64Right, wizardBase64Left, wizardFireballBase64Right);
   });
 
   window.Wizard = Wizard;
