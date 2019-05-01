@@ -1,4 +1,5 @@
-// eslint-disable-next-line strict
+'use strict';
+
 (function () {
 
   var WIZARD_EYES_COLORS = [
@@ -69,6 +70,23 @@
       return wizard;
     }
   };
+
+  document.querySelector('.setup-wizard-form').addEventListener('submit', function (evt) {
+    evt.preventDefault();
+
+    var wizardCopy = document.querySelector('svg').cloneNode(true);
+
+    wizardCopy.querySelector('#wizard-coat').style.fill = window.myWizard.coatColor;
+    wizardCopy.querySelector('#wizard-eyes').style.fill = window.myWizard.eyesColor;
+
+    var wizardBase64Right = window.svg2base64(wizardCopy);
+
+    wizardCopy.querySelector('#wizard').setAttribute('transform', 'translate(62, 0) scale(-1, 1)');
+
+    var wizardBase64Left = window.svg2base64(wizardCopy);
+
+    window.restartGame(wizardBase64Right, wizardBase64Left);
+  });
 
   window.Wizard = Wizard;
 
