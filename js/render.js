@@ -2,34 +2,36 @@
 
 (function () {
 
-  var wizardTemplate = document.querySelector('#similar-wizard-template').content;
+  var SHOW_WIZARDS_NUMBERS = 4;
+  // var OFFSET = 10;
 
-  // Отрисовка одного волшебника
-  var renderWizard = function (wizard) {
-    var element = wizardTemplate.cloneNode(true);
+  var wizardTemplate = document.querySelector('#similar-wizard-template');
+
+  var createElement = function (wizard) {
+    var element = wizardTemplate.content.cloneNode(true);
 
     var wizardElement = element.querySelector('.wizard');
-    wizardElement.querySelector('.wizard-coat').style.fill = wizard.colorCoat;
-    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.colorEyes;
-    element.querySelector('.setup-similar-label').innerText = wizard.name;
+
+    wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
+    wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+    element.querySelector('.setup-similar-label').textContent = wizard.name;
     return element;
   };
 
   var similar = document.querySelector('.setup-similar');
   var similarList = document.querySelector('.setup-similar-list');
 
-  // Отрисовка массива сортированных волшебников
-  var rendSortArr = function (data) {
-    var takeNumber = data.length > 4 ? 4 : data.length;
+  window.render = function (data) {
     similarList.innerHTML = '';
-    for (var i = 0; i < takeNumber; i++) {
-      similarList.appendChild(renderWizard(data[i]));
-    }
 
+    data.slice(0, SHOW_WIZARDS_NUMBERS).forEach(function (wizard) {
+      similarList.appendChild(createElement(wizard));
+    });
     similar.classList.remove('hidden');
   };
-
-  window.render = {
-    rendSortArr: rendSortArr
-  };
 })();
+
+// wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
+
+// var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
+// var wizardElement = similarWizardTemplate.cloneNode(true);

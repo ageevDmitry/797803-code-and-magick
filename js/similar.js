@@ -2,18 +2,16 @@
 
 (function () {
 
-  var coatColor;
-  var eyesColor;
   var wizards = [];
 
   // Определение ранга мага
   var getRank = function (wizard) {
     var rank = 0;
 
-    if (wizard.colorCoat === coatColor) {
+    if (wizard.coatColor === window.myWizard.coatColor) {
       rank += 2;
     }
-    if (wizard.colorEyes === eyesColor) {
+    if (wizard.eyesColor === window.myWizard.eyesColor) {
       rank += 1;
     }
 
@@ -21,43 +19,35 @@
   };
 
   // Сравнение по именам в случае совпадения рангов
-  var namesComparator = function (left, right) {
-    if (left > right) {
+  var namesComparator = function (leftName, rightName) {
+    if (leftName > rightName) {
       return 1;
-    } else if (left < right) {
+    } else if (leftName < rightName) {
       return -1;
     } else {
       return 0;
     }
   };
 
-  // Сортировка волшебников по признаку
-  var updateWizards = function () {
-    window.render.rendSortArr(wizards.sort(function (left, right) {
-      var rankDiff = getRank(right) - getRank(left);
-      if (rankDiff === 0) {
-        rankDiff = namesComparator(left.name, right.name);
-      }
-      return rankDiff;
-    }));
+  var wizardsComparator = function (left, right) {
+    var rankDiff = getRank(right) - getRank(left);
+    return rankDiff === 0 ? namesComparator(left.name, right.name) : rankDiff;
   };
 
-  // Сортировка магов при изменении цвета плаща
-  var newCoatWizard = window.util.debounce(function (color) {
-    coatColor = color;
-    updateWizards();
-  });
+  var updateFilter = function () {
+    window.render(wizards.sort(wizardsComparator));
+  };
 
-  // Сортировка магов при изменении цвета глаз
-  var newEyesWizard = window.util.debounce(function (color) {
-    eyesColor = color;
-    updateWizards();
-  });
+  window.myWizard.onChange = function () {
+    updateFilter();
+  };
 
   // Успешная загрузка с сервера
   var successHandler = function (data) {
-    wizards = data;
-    updateWizards();
+    wizards = data.map(function (it) {
+      return new window.Wizard(it);
+    });
+    updateFilter();
   };
 
   // Неудачная загрузка с сервера
@@ -76,8 +66,4 @@
   // Запрос на сервер
   window.backend.load(successHandler, errorHandler);
 
-  window.similar = {
-    newCoatWizard: newCoatWizard,
-    newEyesWizard: newEyesWizard
-  };
 })();
