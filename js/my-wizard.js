@@ -1,3 +1,5 @@
+// В модуле создается объект игрового персонажа и изменяется персонаж пользователем;
+
 'use strict';
 
 (function () {
@@ -20,7 +22,6 @@
 
   wizardFireballElement.addEventListener('click', function () {
     wizardFireballElement.style.background = wizard.changeFireballColor();
-    console.log(wizardFireballElement);
   });
 
   window.myWizard = wizard;

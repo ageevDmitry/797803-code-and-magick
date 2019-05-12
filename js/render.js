@@ -1,12 +1,10 @@
+// Модуль отвечает за отображение похожих персонажей, загруженных с сервера;
 'use strict';
 
 (function () {
 
   var SHOW_WIZARDS_NUMBERS = 4;
-  // var OFFSET = 10;
-
   var wizardTemplate = document.querySelector('#similar-wizard-template');
-
 
   var createElement = function (wizard) {
     var element = wizardTemplate.content.cloneNode(true);
@@ -32,9 +30,3 @@
     similar.classList.remove('hidden');
   };
 })();
-
-// wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-
-// var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
-// var wizardElement = similarWizardTemplate.cloneNode(true);
-

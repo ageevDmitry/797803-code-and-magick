@@ -1,3 +1,6 @@
+// В данном модуле реализована игровая логика.
+// Изменений в коде на этапе обучения не производилось за исключением функции window.restartGame (стр. 823),
+// которая была создана при реализации отображения игрового персонажа после его настройки;
 'use strict';
 
 window.GameConstants = {
@@ -811,15 +814,14 @@ window.Game = (function () {
 
   var game = new Game(document.querySelector('.demo'));
 
-  window.restartGame = function (wizardRightImage, wizardLeftImage, wizardFireballRightImage) {
+  window.restartGame = function (wizardRightImage, wizardLeftImage) {
     SpriteMap[ObjectType.ME].url = wizardRightImage;
     SpriteMap[ObjectType.ME + REVERSED].url = wizardLeftImage;
-    SpriteMap[ObjectType.FIREBALL].url = wizardFireballRightImage;
     game.initializeLevelAndStart();
     game.setGameStatus(Verdict.INTRO);
   };
 
-  window.restartGame('img/wizard.gif', 'img/wizard-reversed.gif', 'img/fireball.gif');
+  window.restartGame('img/wizard.gif', 'img/wizard-reversed.gif');
 
   return game;
 })();

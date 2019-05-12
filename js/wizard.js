@@ -1,3 +1,6 @@
+// Здесь описан объект персонажа и его методы, а также логика
+// отображения игрового персонажа после отправки формы на сервер.
+
 'use strict';
 
 (function () {
@@ -86,19 +89,13 @@
 
     wizardCopy.querySelector('#wizard-coat').style.fill = window.myWizard.coatColor;
     wizardCopy.querySelector('#wizard-eyes').style.fill = window.myWizard.eyesColor;
-
     var wizardBase64Right = window.svg2base64(wizardCopy);
 
     wizardCopy.querySelector('#wizard').setAttribute('transform', 'translate(62, 0) scale(-1, 1)');
 
     var wizardBase64Left = window.svg2base64(wizardCopy);
 
-    var fireballCopy = document.querySelector('.setup-fireball-wrap').cloneNode(true);
-    fireballCopy.style.background = window.myWizard.fireballColor;
-
-    var wizardFireballBase64Right = window.svg2base64(fireballCopy);
-
-    window.restartGame(wizardBase64Right, wizardBase64Left, wizardFireballBase64Right);
+    window.restartGame(wizardBase64Right, wizardBase64Left);
   });
 
   window.Wizard = Wizard;
